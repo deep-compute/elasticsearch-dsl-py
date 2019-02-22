@@ -450,5 +450,7 @@ class Document(ObjectBase):
         except KeyError:
             result = meta['created']
 
+        return result
+
 # limited backwards compatibility, to be removed in 7.0.0
 DocType = Document

@@ -444,7 +444,13 @@ class Document(ObjectBase):
                 setattr(self.meta, k, meta['_' + k])
 
         # return True/False if the document has been created/updated
-        return meta['result'] == 'created'
+        # Bug Fix : KeyError
+        try:
+            result = meta['result'] == 'created'
+        except KeyError:
+            result = meta['created']
+
+        return result
 
 # limited backwards compatibility, to be removed in 7.0.0
 DocType = Document
